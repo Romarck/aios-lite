@@ -27,13 +27,19 @@ AIOS Lite é um conjunto de **5 agentes de IA especializados** que guiam o desen
 
 ### Setup Inicial
 
-Primeiro, clone ou instale o AIOS Lite:
+Primeiro, clone o AIOS Lite para uma pasta central (recomendado: `~/tools/aios-lite`):
 
 ```bash
+# Criar diretório tools na sua home (opcional, apenas se não existir)
+mkdir -p ~/tools
+
+# Clonar o repositório
 git clone https://github.com/Romarck/aios-lite.git ~/tools/aios-lite
 cd ~/tools/aios-lite
 npm install
 ```
+
+> **Nota:** O caminho `~/tools/aios-lite` é sugerido por convenção. Você pode clonar em qualquer outro local (ex: `~/aios-lite`, `/opt/aios-lite`, etc.) desde que ajuste o caminho nos comandos subsequentes.
 
 ### Opção 1: Instalação Rápida (Automática)
 
