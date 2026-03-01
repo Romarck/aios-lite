@@ -162,9 +162,17 @@ Ou:
 
 Responda perguntas interativas:
 
+#### Método A: Executando do diretório do projeto (recomendado)
+
 ```bash
 cd /caminho/do/seu-projeto
 node ~/tools/aios-lite/bin/install.js
+```
+
+#### Método B: Passando o diretório alvo como argumento
+
+```bash
+node ~/tools/aios-lite/bin/install.js /caminho/do/seu-projeto
 ```
 
 O instalador fará perguntas sobre:
@@ -182,20 +190,34 @@ Confirme e pronto!
 **Fluxo de Decisão:**
 
 ```
-npm install
+Opção 1: npm install (postinstall)
     ↓
-postinstall hook
-    ↓
-bin/install.js
+bin/install.js (targetDir=current working directory)
     ↓
 Detecta modo: --non-interactive?
     ├─ Sim → Carrega .aios-lite-install.json ou padrão
     └─ Não → Modo interativo (perguntas)
     ↓
-generateFiles() gera estrutura
+generateFiles() gera estrutura no targetDir
+    ↓
+✅ Pronto! AIOS Lite instalado
+
+
+Opção 3: node bin/install.js (modo interativo direto)
+    ↓
+bin/install.js (targetDir=process.argv[2] || process.cwd())
+    ↓
+Sempre modo interativo (perguntas)
+    ↓
+generateFiles() gera estrutura no targetDir
     ↓
 ✅ Pronto! AIOS Lite instalado
 ```
+
+**Argumento do targetDir:**
+- Se você passa um argumento: `node bin/install.js /seu-projeto` → instala em `/seu-projeto`
+- Se você não passa argumento: `node bin/install.js` → instala no diretório atual (`process.cwd()`)
+- Se você estiver dentro de seu-projeto, pode executar sem argumento!
 
 **Estrutura do projeto após instalação:**
 
@@ -253,6 +275,24 @@ cat .aios-lite-install.json
 ```bash
 # Execute manualmente:
 node ~/tools/aios-lite/bin/install.js $(pwd) --non-interactive
+```
+
+**Problema: Instalação Interativa (Opção 3) não funciona**
+```bash
+# Certifique-se de estar no diretório do projeto ou passar como argumento
+
+# ✅ CORRETO - Opção A (do seu-projeto):
+cd /seu-projeto
+node ~/tools/aios-lite/bin/install.js
+
+# ✅ CORRETO - Opção B (com argumento):
+node ~/tools/aios-lite/bin/install.js /seu-projeto
+
+# ❌ ERRADO - sem diretório alvo:
+node ~/tools/aios-lite/bin/install.js  # Instala no diretório ATUAL
+
+# ❌ ERRADO - sem argumento e não está no seu-projeto:
+node ~/tools/aios-lite/bin/install.js  # Instala em $HOME ou diretório de execução
 ```
 
 **Problema: Permissão negada em scripts/install-project.sh**
