@@ -30,7 +30,7 @@ AIOS Lite é um conjunto de **5 agentes de IA especializados** que guiam o desen
 Primeiro, clone ou instale o AIOS Lite:
 
 ```bash
-git clone https://github.com/seu-usuario/aios-lite.git ~/tools/aios-lite
+git clone https://github.com/Romarck/aios-lite.git ~/tools/aios-lite
 cd ~/tools/aios-lite
 npm install
 ```
