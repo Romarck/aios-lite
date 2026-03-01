@@ -1,0 +1,8 @@
+{
+  "projectName": "Meu Projeto",
+  "projectType": "greenfield",
+  "backend": "Python/FastAPI",
+  "frontend": "React/Next.js",
+  "database": "PostgreSQL",
+  "ide": "claude"
+}

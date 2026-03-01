@@ -25,20 +25,268 @@ AIOS Lite é um conjunto de **5 agentes de IA especializados** que guiam o desen
 ### Pré-requisitos
 - Node.js 18+
 
-### Clonar o AIOS Lite
+### Setup Inicial
+
+Primeiro, clone ou instale o AIOS Lite:
+
 ```bash
 git clone https://github.com/seu-usuario/aios-lite.git ~/tools/aios-lite
 cd ~/tools/aios-lite
 npm install
 ```
 
-### Instalar em um projeto
+### Opção 1: Instalação Rápida (Automática)
+
+**Melhor para:** Começar rápido com configuração padrão
+
+Usa a configuração padrão (Greenfield + Node.js/Express + React/Next.js + SQLite + Claude Code):
+
+```bash
+cd /caminho/do/seu-projeto
+npm install ~/tools/aios-lite -- --non-interactive
+```
+
+Ou use o script conveniente:
+
+```bash
+~/tools/aios-lite/scripts/install-project.sh /caminho/do/seu-projeto
+```
+
+**Configuração Padrão:**
+```json
+{
+  "projectName": "projeto",
+  "projectType": "greenfield",
+  "backend": "Node.js/Express",
+  "frontend": "React/Next.js",
+  "database": "SQLite",
+  "ide": "claude"
+}
+```
+
+**O que é instalado:**
+- ✓ `.claude/CLAUDE.md` — Instruções para Claude Code
+- ✓ `.aios-lite/config.yaml` — Configuração do projeto
+- ✓ `docs/prd.md` — Template de Product Requirements Document
+- ✓ `docs/architecture.md` — Template de arquitetura
+- ✓ `docs/workflow-greenfield.md` — Guia do workflow
+- ✓ `docs/stories/` — Diretório para user stories
+- ✓ `docs/decisions/` — Diretório para Architecture Decision Records
+
+### Opção 2: Instalação com Configuração Customizada
+
+**Melhor para:** Projetos com stack específico (Python, Java, PostgreSQL, etc.)
+
+#### Passo 1: Criar arquivo de configuração
+
+```bash
+cd /caminho/do/seu-projeto
+cp ~/tools/aios-lite/.aios-lite-install.example.json .aios-lite-install.json
+```
+
+#### Passo 2: Editar configuração
+
+```bash
+# Abra .aios-lite-install.json e customize:
+{
+  "projectName": "Minha Aplicação",
+  "projectType": "greenfield",
+  "backend": "Python/FastAPI",
+  "frontend": "React/Next.js",
+  "database": "PostgreSQL",
+  "ide": "claude"
+}
+```
+
+#### Opções Disponíveis
+
+**projectName** (string)
+- Qualquer nome para seu projeto
+- Padrão: nome do diretório
+
+**projectType** (string)
+- `greenfield` — Projeto novo do zero
+- `brownfield` — Projeto existente
+
+**backend** (string)
+- `Java/Spring Boot`
+- `Python/FastAPI`
+- `Node.js/Express`
+- `Node.js/NestJS`
+- `Outro`
+
+**frontend** (string)
+- `Angular`
+- `React/Next.js`
+- `Vue/Nuxt`
+- `API-only`
+- `Outro`
+
+**database** (string)
+- `PostgreSQL`
+- `MySQL`
+- `MongoDB`
+- `SQLite`
+- `Outro`
+
+**ide** (string)
+- `copilot` — GitHub Copilot
+- `claude` — Claude Code
+- `ambos` — GitHub Copilot + Claude Code
+
+**author** (string, opcional)
+- Seu nome ou organização
+- Padrão: "AIOS Lite"
+
+#### Passo 3: Executar instalação
+
+```bash
+npm install ~/tools/aios-lite -- --non-interactive
+```
+
+Ou:
+
+```bash
+~/tools/aios-lite/scripts/install-project.sh /caminho/do/seu-projeto
+```
+
+### Opção 3: Instalação Interativa
+
+**Melhor para:** Exploradores ou quando quer escolher cada opção
+
+Responda perguntas interativas:
+
 ```bash
 cd /caminho/do/seu-projeto
 node ~/tools/aios-lite/bin/install.js
 ```
 
-O installer faz perguntas sobre seu projeto e gera os arquivos de configuração automaticamente.
+O instalador fará perguntas sobre:
+- Nome do projeto
+- Tipo (greenfield/brownfield)
+- Stack do backend
+- Framework frontend
+- Banco de dados
+- IDE preferida (Copilot/Claude Code/ambos)
+
+Confirme e pronto!
+
+### Como o Instalador Funciona
+
+**Fluxo de Decisão:**
+
+```
+npm install
+    ↓
+postinstall hook
+    ↓
+bin/install.js
+    ↓
+Detecta modo: --non-interactive?
+    ├─ Sim → Carrega .aios-lite-install.json ou padrão
+    └─ Não → Modo interativo (perguntas)
+    ↓
+generateFiles() gera estrutura
+    ↓
+✅ Pronto! AIOS Lite instalado
+```
+
+**Estrutura do projeto após instalação:**
+
+```
+seu-projeto/
+├── .aios-lite/
+│   ├── config.yaml           # Configuração do projeto
+│   └── constitution.md       # Princípios fundamentais
+├── .claude/
+│   └── CLAUDE.md            # Instruções para Claude Code
+├── .github/
+│   ├── copilot-instructions.md   # Instruções para GitHub Copilot
+│   └── agents/              # [Se usar GitHub Copilot]
+│       ├── product.agent.md
+│       ├── architect.agent.md
+│       ├── dev.agent.md
+│       ├── ux.agent.md
+│       └── ship.agent.md
+└── docs/
+    ├── prd.md               # Template de PRD
+    ├── architecture.md      # Template de arquitetura
+    ├── workflow-greenfield.md  # [Se greenfield]
+    ├── workflow-brownfield.md  # [Se brownfield]
+    ├── stories/
+    │   └── .gitkeep
+    └── decisions/
+        └── .gitkeep
+```
+
+### Troubleshooting da Instalação
+
+**Problema: "Comando npm não encontrado"**
+```bash
+# Instale Node.js 18+
+# https://nodejs.org/
+node --version  # Deve ser v18.0.0 ou superior
+```
+
+**Problema: ".aios-lite/config.yaml já existe"**
+```bash
+# O instalador detecta instalações existentes e pede confirmação
+# Opção 1: Confirmar para reinstalar/atualizar
+# Opção 2: Cancelar e revisar arquivos existentes
+```
+
+**Problema: Erro ao ler .aios-lite-install.json**
+```bash
+# Verifique se o JSON é válido
+cat .aios-lite-install.json
+
+# Valide em: https://jsonlint.com/
+```
+
+**Problema: Postinstall hook não executa**
+```bash
+# Execute manualmente:
+node ~/tools/aios-lite/bin/install.js $(pwd) --non-interactive
+```
+
+**Problema: Permissão negada em scripts/install-project.sh**
+```bash
+chmod +x ~/tools/aios-lite/scripts/install-project.sh
+./install-project.sh /seu-projeto
+```
+
+### Modo Programático
+
+Se você quer usar AIOS Lite em scripts Node.js:
+
+```javascript
+const { generateFiles } = require('./src/generator');
+
+const config = {
+  projectName: 'Meu Projeto',
+  projectType: 'greenfield',
+  backend: 'Python/FastAPI',
+  frontend: 'React/Next.js',
+  database: 'PostgreSQL',
+  ide: 'claude'
+};
+
+await generateFiles('/caminho/do/projeto', config);
+```
+
+---
+
+## ⚡ Quick Start (Sem LLM!)
+
+Comece em 3 linhas:
+
+```bash
+npm install ~/tools/aios-lite -- --non-interactive
+cd . && claude
+@product *brainstorm
+```
+
+Pronto! O AIOS Lite está instalado com configuração automática.
 
 ---
 
