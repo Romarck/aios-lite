@@ -1,0 +1,23 @@
+{
+  "name": "aios-lite",
+  "version": "1.0.0",
+  "description": "AIOS Lite — Framework enxuto de desenvolvimento guiado por IA para MVPs",
+  "main": "src/installer.js",
+  "bin": {
+    "aios-lite": "bin/install.js"
+  },
+  "scripts": {
+    "install-in-project": "node bin/install.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^8.2.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["aios", "ai-agents", "development-framework", "mvp", "github-copilot"],
+  "author": "Robson Marques",
+  "license": "MIT"
+}
