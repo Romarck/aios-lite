@@ -36,10 +36,14 @@ mkdir -p ~/tools
 # Clonar o repositório
 git clone https://github.com/Romarck/aios-lite.git ~/tools/aios-lite
 cd ~/tools/aios-lite
+
+# ⚠️ IMPORTANTE: Instale as dependências ANTES de usar qualquer opção
 npm install
 ```
 
-> **Nota:** O caminho `~/tools/aios-lite` é sugerido por convenção. Você pode clonar em qualquer outro local (ex: `~/aios-lite`, `/opt/aios-lite`, etc.) desde que ajuste o caminho nos comandos subsequentes.
+> **Nota sobre o Local:** O caminho `~/tools/aios-lite` é sugerido por convenção. Você pode clonar em qualquer outro local (ex: `~/aios-lite`, `~/Documentos/aios-lite`, `/opt/aios-lite`, ou até dentro do seu projeto), desde que:
+> 1. Execute `npm install` no diretório do aios-lite
+> 2. Ajuste os caminhos nos comandos subsequentes (substitua `~/tools/aios-lite` pelo caminho real)
 
 ### Opção 1: Instalação Rápida (Automática)
 
@@ -160,14 +164,37 @@ Ou:
 
 **Melhor para:** Exploradores ou quando quer escolher cada opção
 
-Responda perguntas interativas:
+#### Passo 1: Preparar AIOS Lite
+
+Primeiro, clone o repositório do AIOS Lite (se ainda não tiver):
 
 ```bash
+# Opção A: Clone em ~/tools/ (recomendado)
+mkdir -p ~/tools
+git clone https://github.com/Romarck/aios-lite.git ~/tools/aios-lite
+cd ~/tools/aios-lite
+
+# OU Opção B: Clone em outro local (ex: dentro do seu projeto)
 cd /caminho/do/seu-projeto
-node ~/tools/aios-lite/bin/install.js
+git clone https://github.com/Romarck/aios-lite.git aios-lite
+cd aios-lite
 ```
 
-O instalador fará perguntas sobre:
+Instale as dependências do AIOS Lite:
+
+```bash
+npm install
+```
+
+#### Passo 2: Executar o Instalador
+
+De **dentro do diretório aios-lite**, execute:
+
+```bash
+node ./bin/install.js
+```
+
+O instalador fará perguntas interativas sobre:
 - Nome do projeto
 - Tipo (greenfield/brownfield)
 - Stack do backend
@@ -175,7 +202,15 @@ O instalador fará perguntas sobre:
 - Banco de dados
 - IDE preferida (Copilot/Claude Code/ambos)
 
-Confirme e pronto!
+Responda cada pergunta e o AIOS Lite gerará os arquivos necessários no seu projeto.
+
+> ⚠️ **Importante:** O `node ./bin/install.js` deve ser executado **de dentro da pasta aios-lite** (não de fora). Se estiver em outro local, use o caminho completo:
+> ```bash
+> node ~/tools/aios-lite/bin/install.js
+> # ou
+> node ~/Documentos/Projetos/aios-lite/bin/install.js
+> ```
+> Mas **nunca misture** `~` com caminhos absolutos completos (ex: ~~`~/home/romarck/Documentos/...`~~)
 
 ### Como o Instalador Funciona
 
@@ -234,6 +269,19 @@ seu-projeto/
 node --version  # Deve ser v18.0.0 ou superior
 ```
 
+**Problema: Erro "Cannot find module 'fs-extra'" ou "Cannot find module 'inquirer'"**
+```bash
+# Isso significa que npm install NÃO foi executado no diretório aios-lite
+# Solução:
+cd ~/tools/aios-lite  # ou o caminho onde você clonou aios-lite
+npm install
+
+# Depois tente novamente:
+node ./bin/install.js  # Opção 3 (interativa)
+# ou
+npm install ~/tools/aios-lite -- --non-interactive  # Opção 1 ou 2
+```
+
 **Problema: ".aios-lite/config.yaml já existe"**
 ```bash
 # O instalador detecta instalações existentes e pede confirmação
@@ -250,8 +298,13 @@ cat .aios-lite-install.json
 ```
 
 **Problema: Postinstall hook não executa**
+
+O postinstall hook executa automaticamente quando você instala aios-lite como dependência em um projeto:
 ```bash
-# Execute manualmente:
+# Isso ativa o postinstall hook automaticamente:
+npm install ~/tools/aios-lite -- --non-interactive
+
+# Se não funcionar (por exemplo, em alguns ambientes), execute manualmente:
 node ~/tools/aios-lite/bin/install.js $(pwd) --non-interactive
 ```
 
@@ -259,6 +312,22 @@ node ~/tools/aios-lite/bin/install.js $(pwd) --non-interactive
 ```bash
 chmod +x ~/tools/aios-lite/scripts/install-project.sh
 ./install-project.sh /seu-projeto
+```
+
+**Problema: Erro "Cannot find module" com caminho duplicado**
+```bash
+# ❌ ERRADO: Misturando ~ com caminho absoluto
+node ~/home/romarck/Documentos/Projetos/aios-lite/bin/install.js
+
+# ✅ CORRETO: Use apenas um dos dois:
+# Opção A: Com ~
+node ~/Documentos/Projetos/aios-lite/bin/install.js
+
+# Opção B: Caminho absoluto completo
+node /home/romarck/Documentos/Projetos/aios-lite/bin/install.js
+
+# Opção C: Se estiver dentro do diretório aios-lite
+cd aios-lite && node ./bin/install.js
 ```
 
 ### Modo Programático
