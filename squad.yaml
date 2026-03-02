@@ -1,8 +1,9 @@
-name: "AIOS Lite"
+name: "aios-lite"
 version: "1.0.0"
 description: "Framework enxuto de desenvolvimento guiado por IA para MVPs e projetos ágeis com economia radical de tokens (-88% vs AIOS completo)"
 
 aios:
+  type: "squad"
   minVersion: "1.0.0"
 
 author:
