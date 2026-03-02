@@ -1,35 +1,45 @@
-# AIOS Lite Squad Manifest
-# Framework enxuto de desenvolvimento guiado por IA para MVPs e projetos ágeis
+name: "AIOS Lite"
+version: "1.0.0"
+description: "Framework enxuto de desenvolvimento guiado por IA para MVPs e projetos ágeis com economia radical de tokens (-88% vs AIOS completo)"
 
-metadata:
-  name: "AIOS Lite"
-  version: "1.0.0"
-  description: "Framework enxuto de desenvolvimento guiado por IA para MVPs e projetos ágeis com economia radical de tokens"
-  author: "Robson Marques"
-  license: "MIT"
-  repository: "https://github.com/Romarck/aios-lite"
-  documentation: "https://github.com/Romarck/aios-lite/blob/master/README.md"
+aios:
+  minVersion: "1.0.0"
 
-agents:
-  - name: "product"
-    file: "agents/product.agent.md"
-    description: "Brainstorm, PRD, stories, backlog"
+author:
+  name: "Robson Marques"
+  email: "robson@example.com"
+  organization: "AIOS Lite"
 
-  - name: "architect"
-    file: "agents/architect.agent.md"
-    description: "Stack, arquitetura, modelo de dados, ADRs"
+license: "MIT"
+repository: "https://github.com/Romarck/aios-lite"
+documentation: "https://github.com/Romarck/aios-lite/blob/master/README.md"
 
-  - name: "dev"
-    file: "agents/dev.agent.md"
-    description: "Implementação (agnóstico de tecnologia)"
+components:
+  agents:
+    - id: "product"
+      name: "Product Visionary"
+      file: "agents/product.agent.md"
+      description: "Especialista em Product Management guiando brainstorm, PRD, stories e backlog"
 
-  - name: "ux"
-    file: "agents/ux.agent.md"
-    description: "Pesquisa, wireframes, sistema de design"
+    - id: "architect"
+      name: "System Architect"
+      file: "agents/architect.agent.md"
+      description: "Responsável pela arquitetura, stack tecnológico, modelo de dados e ADRs"
 
-  - name: "ship"
-    file: "agents/ship.agent.md"
-    description: "QA, aprovação de stories, deploy"
+    - id: "dev"
+      name: "Implementation Developer"
+      file: "agents/dev.agent.md"
+      description: "Implementa features com código agnóstico de tecnologia"
+
+    - id: "ux"
+      name: "UX Research Lead"
+      file: "agents/ux.agent.md"
+      description: "Conduz pesquisa, wireframes e sistema de design"
+
+    - id: "ship"
+      name: "Quality & Release Manager"
+      file: "agents/ship.agent.md"
+      description: "Garante qualidade, testa e coordena deployment"
 
 features:
   - name: "Token Economy"
@@ -39,17 +49,13 @@ features:
     description: "Designed para funcionar nativamente com GitHub Copilot"
 
   - name: "Technology Agnostic"
-    description: "Agnóstico de tecnologia - suporta qualquer stack"
+    description: "Agnóstico de tecnologia - suporta qualquer stack backend/frontend/database"
 
   - name: "Story-Driven Development"
-    description: "Desenvolvimento guiado por stories com rastreabilidade"
+    description: "Desenvolvimento guiado por stories com rastreabilidade completa"
 
   - name: "Full-Stack Support"
-    description: "Suporta projetos greenfield e brownfield"
-
-requirements:
-  node: ">=18.0.0"
-  npm: ">=9.0.0"
+    description: "Suporta projetos greenfield e brownfield com workflows diferentes"
 
 tags:
   - "development-framework"
@@ -59,3 +65,10 @@ tags:
   - "claude-code"
   - "mvp"
   - "agile"
+  - "lightweight"
+
+requirements:
+  node:
+    min: "18.0.0"
+  npm:
+    min: "9.0.0"
