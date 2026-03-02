@@ -794,17 +794,29 @@ seu-projeto/
 
 ```
 aios-lite/
+├── agents/                    # Definições dos 5 agentes (marketplace)
+│   ├── product.agent.md       # @product — Brainstorm, PRD, stories
+│   ├── architect.agent.md     # @architect — Stack, arquitetura, ADRs
+│   ├── dev.agent.md           # @dev — Implementação agnóstica
+│   ├── ux.agent.md            # @ux — Pesquisa, wireframes, design
+│   └── ship.agent.md          # @ship — QA, deploy, releases
 ├── bin/
-│   └── install.js          # CLI entry point
+│   └── install.js             # CLI entry point
+├── config/
+│   └── squad-config.yaml      # Configuração do squad
 ├── src/
-│   ├── installer.js        # Lógica do installer (perguntas)
-│   └── generator.js        # Geração de arquivos
+│   ├── installer.js           # Lógica do installer (perguntas)
+│   └── generator.js           # Geração de arquivos
+├── tasks/
+│   └── core-tasks.yaml        # Definições de tarefas atômicas
 ├── templates/
-│   ├── agents/             # 5 agentes
-│   ├── docs/               # Templates de PRD, story, arquitetura
-│   ├── workflows/          # Greenfield e brownfield
-│   ├── ide/                # Instruções para GitHub Copilot e Claude Code
-│   └── constitution.md     # Princípios fundamentais
+│   ├── agents/                # Templates dos agentes
+│   ├── docs/                  # Templates de PRD, story, arquitetura
+│   ├── workflows/             # Greenfield e brownfield
+│   ├── ide/                   # Instruções para GitHub Copilot e Claude Code
+│   └── constitution.md        # Princípios fundamentais
+├── squad.yaml                 # Manifesto do squad (marketplace)
+├── workflows.yaml             # Workflows greenfield e brownfield
 └── package.json
 ```
 
