@@ -819,6 +819,39 @@ aios-lite/
 
 ---
 
+---
+
+## Acknowledgments & Attribution
+
+AIOS Lite foi desenvolvido como uma implementação enxuta derivada do **AIOS-Core** (https://github.com/SynkraAI/aios-core), que por sua vez originou-se do **BMad Method**, criado por Brian Madison (BMad Code, LLC). Agradecemos tanto ao AIOS-Core quanto ao BMad Method por fornecer a inspiração arquitetural e conceitual para este projeto.
+
+### Isenções de Responsabilidade Importantes
+
+- Este projeto **NÃO é afiliado com**, endossado por, ou sancionado pelo AIOS-Core, BMad Method ou BMad Code, LLC.
+- AIOS Lite é uma implementação **independente e simplificada** projetada para casos de uso específicos e fins educacionais.
+- Colaboradores que aparecem no histórico do git do AIOS-Core ou BMad Method **não implicam participação ativa** ou endosso do AIOS-Lite.
+
+### Principais Diferenciais do AIOS-Lite
+
+Em relação aos projetos predecessores, AIOS-Lite foi otimizado para **economia radical de tokens**:
+
+- **-88% de tokens** na linha de base por sessão (~600 vs ~5.000)
+- **-83% de tokens** por ativação de agente (~700 vs ~4.000)
+- **-100% de overhead** de hooks (zero Synapse, instruções otimizadas)
+- **-85% de tokens** em ciclos completos (story inteira: ~4.500 vs ~30.000)
+
+Essa redução foi alcançada através de:
+- Instruções de agentes ultra-concentradas
+- Remoção de abstrações desnecessárias
+- Templates minimalistas e reutilizáveis
+- Foco em qualidade sobre quantidade de tokens
+
+Para mais informações sobre os projetos originais:
+- **AIOS-Core**: https://github.com/SynkraAI/aios-core
+- **BMad Method**: (repositório oficial do BMad Method)
+
+---
+
 ## Licença
 
 MIT — Robson Marques
