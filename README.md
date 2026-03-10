@@ -32,14 +32,23 @@ AIOS Lite integra **6 agentes IA especializados** que guiam o desenvolvimento do
 mkdir -p ~/tools
 git clone https://github.com/Romarck/aios-lite.git ~/tools/aios-lite
 cd ~/tools/aios-lite
+
+# ⚠️ IMPORTANTE: Instale as dependências ANTES de usar qualquer opção
 npm install
 ```
 
 ### Passo 2: Instalar em seu projeto
 
 ```bash
+# Opção A: Clone em ~/tools/ (recomendado)
+mkdir -p ~/tools
+git clone https://github.com/Romarck/aios-lite.git ~/tools/aios-lite
+cd ~/tools/aios-lite
+
+# OU Opção B: Clone em outro local (ex: dentro do seu projeto)
 cd /caminho/do/seu-projeto
-node ~/tools/aios-lite/bin/install.js
+git clone https://github.com/Romarck/aios-lite.git aios-lite
+cd aios-lite
 ```
 
 Responda as perguntas interativas:
@@ -219,8 +228,16 @@ node ~/tools/aios-lite/bin/install.js
 
 ```
 aios-lite/
+├── agents/                    # Definições dos 5 agentes (marketplace)
+│   ├── product.agent.md       # @product — Brainstorm, PRD, stories
+│   ├── architect.agent.md     # @architect — Stack, arquitetura, ADRs
+│   ├── dev.agent.md           # @dev — Implementação agnóstica
+│   ├── ux.agent.md            # @ux — Pesquisa, wireframes, design
+│   └── ship.agent.md          # @ship — QA, deploy, releases
 ├── bin/
-│   └── install.js          # CLI entry point
+│   └── install.js             # CLI entry point
+├── config/
+│   └── squad-config.yaml      # Configuração do squad
 ├── src/
 │   ├── installer.js        # Lógica interativa
 │   └── generator.js        # Geração de arquivos
