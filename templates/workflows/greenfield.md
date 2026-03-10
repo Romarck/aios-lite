@@ -102,6 +102,37 @@ O `@product` lê o `docs/prd.md` e gera uma story para cada funcionalidade, prio
 
 ---
 
+## Fase 3.5: Auditoria de Segurança (Pré-desenvolvimento, recomendado)
+
+**Objetivo:** Validar que templates, dependências e arquitetura não possuem riscos de segurança antes de implementar código.
+
+> **Nota:** Esta fase é opcional para MVPs em desenvolvimento, mas obrigatória antes de deploy em produção ou em projetos regulados.
+
+### 3.5.1 Auditoria de Segurança
+
+```
+Ative: @security
+Comando: *scan-deps
+```
+
+Valida:
+- Supply chain (typosquatting, versões perigosas)
+- Dependências e licenças
+- Padrões suspeitos de código
+
+**Entrega:** `docs/security/scan-report.md`
+
+### 3.5.2 Compliance Regulatório (se aplicável)
+
+```
+Ative: @security
+Comando: *compliance [BCB|FEBRABAN|B3-CVM]
+```
+
+Se o projeto for para ambiente regulado, valide conformidade.
+
+---
+
 ## Fase 4: Construção (ciclo por story)
 
 **Objetivo:** Implementar e validar uma story por vez.
@@ -166,6 +197,12 @@ START
 @product *stories
   │
   ▼
+@security *scan-deps (recomendado antes de implementar)
+  │
+  ▼
+@security *compliance [se regulado]
+  │
+  ▼
 ┌─────────────────────────────┐
 │  Para cada story "Pronto"   │
 │                             │
@@ -178,6 +215,9 @@ START
 │        │                    │
 │        └─── Não ──► @dev corrige
 └─────────────────────────────┘
+  │
+  ▼
+@security *audit-code (obrigatório antes de produção)
   │
   ▼
 @ship *deploy production

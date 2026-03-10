@@ -7,10 +7,63 @@ Guia passo a passo para adicionar funcionalidades ou dar sustentação em um pro
 ## Visão Geral
 
 ```
-DESCOBERTA (auditar o que existe) → PLANEJAMENTO → CONSTRUÇÃO (ciclo) → ENTREGA
+SEGURANÇA (auditoria obrigatória) → DESCOBERTA (auditar o que existe) → PLANEJAMENTO → CONSTRUÇÃO (ciclo) → ENTREGA
 ```
 
-> **Diferença do Greenfield:** começa com auditoria do sistema existente antes de planejar novas funcionalidades.
+> **Diferença do Greenfield:** começa com auditoria de segurança + auditoria do sistema existente antes de planejar novas funcionalidades.
+
+---
+
+## Fase 0: Auditoria de Segurança (OBRIGATÓRIO)
+
+**Objetivo:** Garantir que o sistema existente não possui vulnerabilidades críticas, malware, supply chain comprometida ou riscos de compliance antes de qualquer mudança.
+
+> ⚠️ **CRÍTICO:** Esta fase é obrigatória para projetos regulados (BCB, FEBRABAN, B3, CVM) e altamente recomendada para todos os projetos.
+
+### 0.1 Auditoria Completa de Código
+
+```
+Ative: @security
+Comando: *audit-code
+```
+
+O `@security` executa análise completa em 7 fases:
+1. Mapeamento inicial do projeto (linguagens, frameworks, runtime)
+2. Análise de dependências e supply chain (typosquatting, versões perigosas)
+3. Análise de código para padrões maliciosos (exfiltração, backdoors, ofuscação)
+4. Análise de endpoints externos e comunicação de rede
+5. Verificação de licenças e compliance
+6. Análise de risco regulatório (BCB, FEBRABAN, B3, CVM)
+7. Relatório final com veredicto
+
+**Entrega:** `docs/security/audit-report.md` com tabela de achados
+
+### 0.2 Conformidade Regulatória (se aplicável)
+
+Dependendo do contexto do projeto, execute:
+
+```
+Ative: @security
+Comando: *compliance BCB          # Se regido pelo Banco Central
+Comando: *compliance FEBRABAN     # Se integração bancária/pagamentos
+Comando: *compliance B3-CVM       # Se dados de mercado/investidores
+```
+
+**Entrega:** `docs/security/compliance-bcb.md`, `docs/security/compliance-febraban.md`, etc.
+
+### 0.3 Veredicto
+
+```
+Ative: @security
+Comando: *report
+```
+
+**Resultado esperado:**
+- ✅ **APROVADO** — Prosseguir para Fase 1
+- ⚠️ **APROVADO COM RESSALVAS** — Prosseguir para Fase 1 com plano de remediação
+- ❌ **REPROVADO** — NÃO prosseguir até resolver achados críticos
+
+Se resultado for ❌, resolva os achados críticos com time de desenvolvimento antes de continuar.
 
 ---
 
@@ -147,7 +200,20 @@ Se algum item estiver com ❌, resolva antes de prosseguir.
 START (projeto existente)
   │
   ▼
-@architect *audit
+@security *audit-code (FASE 0 — obrigatório)
+  │
+  ▼
+@security *compliance [BCB|FEBRABAN|B3-CVM] (se regulado)
+  │
+  ▼
+✅ Segurança aprovada?
+  │
+  ├─ Não ──► Resolver achados críticos → voltar para *audit-code
+  │
+  └─ Sim ──► Prosseguir
+       │
+       ▼
+@architect *audit (FASE 1)
   │
   ▼
 @architect *datamodel (documenta atual)

@@ -48,6 +48,7 @@ async function generateFiles(targetDir, config) {
     '.aios-lite',
     'docs/stories',
     'docs/decisions',
+    'docs/security',
   ];
 
   if (config.ide.includes('copilot') || config.ide.includes('ambos')) {
@@ -66,7 +67,7 @@ async function generateFiles(targetDir, config) {
 
   // 2. Agentes GitHub Copilot
   if (config.ide.includes('copilot') || config.ide.includes('ambos')) {
-    const agents = ['product', 'architect', 'dev', 'ux', 'ship'];
+    const agents = ['product', 'architect', 'dev', 'ux', 'security', 'ship'];
     for (const agent of agents) {
       const content = loadTemplate(`agents/${agent}.md`, vars);
       const dest = path.join(targetDir, `.github/agents/${agent}.agent.md`);
@@ -113,6 +114,14 @@ async function generateFiles(targetDir, config) {
   );
   generated.push(`docs/workflow-${workflowFile}.md`);
 
+  // 6.5 Guia de segurança para projetos regulados
+  const securityGuideContent = loadTemplate('docs/security-first.md', vars);
+  await fs.writeFile(
+    path.join(targetDir, 'docs/security-first.md'),
+    securityGuideContent
+  );
+  generated.push('docs/security-first.md');
+
   // 7. Constitution
   const constitutionContent = loadTemplate('constitution.md', vars);
   await fs.writeFile(path.join(targetDir, '.aios-lite/constitution.md'), constitutionContent);
@@ -121,8 +130,10 @@ async function generateFiles(targetDir, config) {
   // 8. .gitkeep para diretórios vazios
   await fs.writeFile(path.join(targetDir, 'docs/stories/.gitkeep'), '');
   await fs.writeFile(path.join(targetDir, 'docs/decisions/.gitkeep'), '');
+  await fs.writeFile(path.join(targetDir, 'docs/security/.gitkeep'), '');
   generated.push('docs/stories/ (diretório)');
   generated.push('docs/decisions/ (diretório)');
+  generated.push('docs/security/ (diretório)');
 
   return generated;
 }
@@ -180,6 +191,7 @@ agents:
   - architect
   - dev
   - ux
+  - security
   - ship
 
 docs:
@@ -188,6 +200,7 @@ docs:
   datamodel: "docs/datamodel.md"
   stories: "docs/stories/"
   decisions: "docs/decisions/"
+  security: "docs/security/"
 
 aiosLite:
   version: "1.0.0"
