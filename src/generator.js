@@ -67,12 +67,19 @@ async function generateFiles(targetDir, config) {
 
   // 2. Agentes GitHub Copilot
   if (config.ide.includes('copilot') || config.ide.includes('ambos')) {
-    const agents = ['product', 'architect', 'dev', 'ux', 'security', 'ship'];
+    const agents = [
+      { file: 'po.md', name: 'po' },
+      { file: 'architect.md', name: 'architect' },
+      { file: 'dev.md', name: 'dev' },
+      { file: 'ux.md', name: 'ux' },
+      { file: 'si.md', name: 'si' },
+      { file: 'qadv.md', name: 'qadv' }
+    ];
     for (const agent of agents) {
-      const content = loadTemplate(`agents/${agent}.md`, vars);
-      const dest = path.join(targetDir, `.github/agents/${agent}.agent.md`);
+      const content = loadTemplate(`agents/${agent.file}`, vars);
+      const dest = path.join(targetDir, `.github/agents/${agent.name}.agent.md`);
       await fs.writeFile(dest, content);
-      generated.push(`.github/agents/${agent}.agent.md`);
+      generated.push(`.github/agents/${agent.name}.agent.md`);
     }
 
     // Instruções globais do Copilot
@@ -187,12 +194,12 @@ ide:
   selected: "${config.ide}"
 
 agents:
-  - product
+  - po
   - architect
   - dev
   - ux
-  - security
-  - ship
+  - si
+  - qadv
 
 docs:
   prd: "docs/prd.md"

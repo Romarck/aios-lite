@@ -12,12 +12,12 @@ AIOS Lite integra **6 agentes IA especializados** que guiam o desenvolvimento do
 
 | Agente | Função |
 |--------|--------|
-| `@product` | Brainstorm, PRD, stories, backlog |
+| `@po` | Brainstorm, PRD, stories, backlog |
 | `@architect` | Stack, arquitetura, modelo de dados, ADRs |
 | `@dev` | Implementação (agnóstico) |
 | `@ux` | Pesquisa, wireframes, design system |
-| `@security` | 🔐 Auditoria, vulnerabilidades, compliance BCB/FEBRABAN/B3/CVM |
-| `@ship` | QA, aprovação, deploy |
+| `@si` | 🔐 Auditoria, vulnerabilidades, compliance BCB/FEBRABAN/B3/CVM |
+| `@qadv` | QA, aprovação, deploy |
 
 ---
 
@@ -73,7 +73,7 @@ claude
 
 ## Referência de Comandos
 
-### @product — Product Manager
+### @po — Product Manager
 ```
 *brainstorm       Sessão de ideação
 *prd              Criar/atualizar PRD
@@ -109,7 +109,7 @@ claude
 *help             Ver todos os comandos
 ```
 
-### @security — Segurança & Compliance
+### @si — Segurança & Compliance
 ```
 *audit-code                   Auditoria completa (7 fases)
 *scan-deps                    Análise supply chain
@@ -122,7 +122,7 @@ claude
 *help                         Ver todos os comandos
 ```
 
-### @ship — QA/Deploy
+### @qadv — QA/Deploy
 ```
 *qa N             Revisar qualidade da story N
 *deploy           Preparar deploy
@@ -136,48 +136,48 @@ claude
 
 ### 🌱 Novo Projeto (Greenfield)
 ```bash
-@product *brainstorm
-@product *prd
+@po *brainstorm
+@po *prd
 @ux *research
 @ux *wireframes
 @ux *design-system
 @architect *stack
 @architect *architecture
 @architect *datamodel
-@product *stories
+@po *stories
 
 # Recomendado antes de implementar:
-@security *scan-deps
-@security *compliance [BCB|FEBRABAN|B3-CVM]  # Se regulado
+@si *scan-deps
+@si *compliance [BCB|FEBRABAN|B3-CVM]  # Se regulado
 
 # Para cada story N:
 @dev *develop N
-@ship *qa N
+@qadv *qa N
 
 # Obrigatório antes de produção:
-@security *audit-code
+@si *audit-code
 
 # Ao final:
-@ship *deploy
+@qadv *deploy
 ```
 
 ### 🏗️ Projeto Existente (Brownfield)
 ```bash
 # ⚠️ FASE 0 — OBRIGATÓRIA (segurança):
-@security *audit-code
-@security *compliance [BCB|FEBRABAN|B3-CVM]  # Se regulado
+@si *audit-code
+@si *compliance [BCB|FEBRABAN|B3-CVM]  # Se regulado
 
 # Depois prosseguir com:
 @architect *audit
 @architect *datamodel
-@product *prd
-@product *stories
+@po *prd
+@po *stories
 
 # Para cada story N:
 @dev *develop N
-@ship *qa N
+@qadv *qa N
 
-@ship *deploy
+@qadv *deploy
 ```
 
 ---

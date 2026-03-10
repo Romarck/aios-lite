@@ -26,16 +26,16 @@ Cada agente tem responsabilidades exclusivas. Não invadir o escopo alheio.
 
 | Agente | Autoridade Exclusiva |
 |--------|---------------------|
-| `@product` | PRD, stories, priorização |
+| `@po` | PRD, stories, priorização |
 | `@architect` | Decisões técnicas, modelo de dados |
 | `@dev` | Implementação de código |
 | `@ux` | Design, wireframes, sistema de design |
-| `@security` | Auditoria, vulnerabilidades, compliance regulatório |
-| `@ship` | Qualidade (QA) e deploy |
+| `@si` | Auditoria, vulnerabilidades, compliance regulatório |
+| `@qadv` | Qualidade (QA) e deploy |
 
 **Violação:** Agente que tomar decisão fora do seu escopo deve reverter e delegar.
 
-**Nota especial sobre @security:** Este agente tem veto sobre início de desenvolvimento em brownfield e pré-produção em greenfield se encontrar vulnerabilidades críticas.
+**Nota especial sobre @si:** Este agente tem veto sobre início de desenvolvimento em brownfield e pré-produção em greenfield se encontrar vulnerabilidades críticas.
 
 ---
 
