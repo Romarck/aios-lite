@@ -49,38 +49,42 @@ Um quadro para entender as diferenças fundamentais de arquitetura entre os dois
 ### Pré-requisitos
 - Node.js 18+
 
-### Passo 1: Clonar AIOS Lite
+### Passo 1: Clonar e Instalar Dependências
 
 ```bash
 mkdir -p ~/tools
 git clone https://github.com/Romarck/aios-lite.git ~/tools/aios-lite
 cd ~/tools/aios-lite
-
-# ⚠️ IMPORTANTE: Instale as dependências ANTES de usar qualquer opção
 npm install
 ```
 
-### Passo 2: Instalar em seu projeto
+**Dependências instaladas:**
+- `chalk` (4.1.2) — Colorização de terminal
+- `fs-extra` (11.3.0) — Operações de arquivo avançadas
+- `inquirer` (8.2.6) — Interface interativa de perguntas
+
+### Passo 2: Usar em seu Projeto
 
 ```bash
-# Opção A: Clone em ~/tools/ (recomendado)
-mkdir -p ~/tools
-git clone https://github.com/Romarck/aios-lite.git ~/tools/aios-lite
+# Opção A: Clonar em ~/tools/ (recomendado)
 cd ~/tools/aios-lite
+node bin/install.js
 
-# OU Opção B: Clone em outro local (ex: dentro do seu projeto)
+# OU Opção B: Clone em outro local
 cd /caminho/do/seu-projeto
 git clone https://github.com/Romarck/aios-lite.git aios-lite
 cd aios-lite
+npm install
+node bin/install.js
 ```
 
-Responda as perguntas interativas:
+**Responda as perguntas interativas:**
 - Nome do projeto
 - Tipo (greenfield / brownfield)
 - Backend, frontend, banco de dados
 - IDE preferida (Copilot / Claude Code / ambos)
 
-**Pronto!** O AIOS Lite gera:
+**Arquivos gerados no seu projeto:**
 - `.aios-lite/config.yaml` — Configuração
 - `.claude/CLAUDE.md` ou `.github/copilot-instructions.md` — Instruções para IA
 - `docs/prd.md`, `docs/architecture.md` — Templates
