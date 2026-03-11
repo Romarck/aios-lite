@@ -21,6 +21,29 @@ AIOS Lite integra **6 agentes IA especializados** que guiam o desenvolvimento do
 
 ---
 
+## Comparativo: AIOS-Lite vs AIOX-Squad
+
+Um quadro para entender as diferenças fundamentais de arquitetura entre os dois frameworks:
+
+| Métrica | **AIOS-Lite** | **AIOX-Squad** | Diferença |
+|---------|---------------|-------|-----------|
+| **Agentes Especializados** | 6 | 12 | AIOX tem 2x mais agentes |
+| **Suporte a Squads** | ❌ Não | ✅ Sim (paralelo) | AIOX permite equipes paralelas |
+| **Workflows Predefinidos** | 2 (greenfield, brownfield) | 12+ (git, story, epic, etc) | AIOX mais workflows especializados |
+| **Arquivos Totais** | 19 | 7.842 | AIOX 413x maior |
+| **Linhas de Código** | 2.628 | 1.555.839 | AIOX 593x mais código |
+| **Pacotes NPM Separados** | 0 (monolito) | 3 (aiox-install, aiox-pro-cli, gemini-ext) | AIOX modularizado |
+| **Dependências Diretas** | 3 | 10+ | AIOX mais dependências |
+| **Templates de Docs** | 4 | 20+ | AIOX mais templates |
+| **Documentação** | Reduzida (didática) | Extensa (português, inglês, espanhol, chinês) | AIOX multilíngue |
+| **Curva de Aprendizado** | Rápida (30 min) | Íngreme (horas/dias) | AIOS-Lite minimalista |
+| **Ideal para** | MVPs, startups, prototipagem rápida | Projetos enterprise, grande escala |
+| **Filosofia** | Enxuto e pragmático | Robusto e extensível |
+
+**Resumo:** AIOS-Lite é uma versão **ultraleve** otimizada para velocidade (MVP em dias), enquanto AIOX-Squad é uma plataforma **enterprise** com suporte a squads paralelos, workflows complexos e múltiplas linguagens.
+
+---
+
 ## Instalação Rápida
 
 ### Pré-requisitos
