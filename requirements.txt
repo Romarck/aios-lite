@@ -1,0 +1,22 @@
+# AIOS Lite — Requisitos de Sistema e Dependências
+
+## Requisitos do Sistema
+Node.js>=18.0.0
+npm>=9.0.0 (incluído com Node.js)
+
+## Dependências NPM (gerenciadas via package.json)
+chalk@^4.1.2       # Colorização de saída de terminal
+fs-extra@^11.3.0   # Operações de sistema de arquivos avançadas
+inquirer@^8.2.6    # Interface interativa para perguntas no CLI
+
+## Instalação de Dependências
+Execute em ~/tools/aios-lite ou no diretório do seu projeto clonado:
+$ npm install
+
+Este comando irá instalar automaticamente todas as dependências listadas acima.
+
+## Verificação
+Para verificar se tudo foi instalado corretamente:
+$ node --version          # Deve ser v18.0.0 ou superior
+$ npm --version           # Deve ser 9.0.0 ou superior
+$ npm ls                  # Lista todas as dependências instaladas

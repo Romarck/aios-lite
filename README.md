@@ -47,7 +47,10 @@ Um quadro para entender as diferenças fundamentais de arquitetura entre os dois
 ## Instalação Rápida
 
 ### Pré-requisitos
+
+Veja `requirements.txt` para lista completa. Resumidamente:
 - Node.js 18+
+- npm 9+
 
 ### Passo 1: Clonar e Instalar Dependências
 
@@ -58,7 +61,7 @@ cd ~/tools/aios-lite
 npm install
 ```
 
-**Dependências instaladas:**
+**Dependências instaladas** (veja `requirements.txt`):
 - `chalk` (4.1.2) — Colorização de terminal
 - `fs-extra` (11.3.0) — Operações de arquivo avançadas
 - `inquirer` (8.2.6) — Interface interativa de perguntas
